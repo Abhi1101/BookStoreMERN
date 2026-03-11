@@ -8,13 +8,13 @@ import cors from "cors";
 const app = express();
 app.use(express.json());
 
-// app.use(cors());     //allow request from anywhere
+app.use(cors());                 //allow request from anywhere
 
-app.use(cors({
-    origin: "http://localhost:5173",
-    methods: ["GET","PUT","POST","DELETE"],
-    allowedHeaders: ["Content-Type"],
-}))
+// app.use(cors({                      //allow request from custom domains 
+//     origin: "http://localhost:5173",
+//     methods: ["GET","PUT","POST","DELETE"],
+//     allowedHeaders: ["Content-Type"],
+// }))  
 
 app.get('/', (req, res) => {
     console.log(req);
