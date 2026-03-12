@@ -4,6 +4,9 @@ import Spinner from '../components/Spinner'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router'
 import BackButton from '../components/BackButton'
+import { enqueueSnackbar, useSnackbar } from 'notistack'
+
+
 
 function EditBook() {
  const [loading, setLoading] = useState(false)
@@ -35,11 +38,13 @@ function EditBook() {
       .then((response) => {
         console.log(response);
         setLoading(false);
+        enqueueSnackbar("Successfully Edited Book!!!", {variant: 'success'})
         navigate('/');
       })
       .catch((error) => {
         setLoading(false);
-        alert("An error happened. Please Check Console");
+        // alert("An error happened. Please Check Console");
+        enqueueSnackbar(`${error.message}`, {variant: 'error'})
         console.log(error);
         console.log(error.message);
       })

@@ -2,11 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { BrowserRouter} from "react-router";
+import { BrowserRouter } from "react-router";
 // import { RouterProvider } from "react-router/dom";
+import { SnackbarProvider, useSnackbar } from 'notistack'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <SnackbarProvider>
+      <App />
+    </SnackbarProvider>
   </BrowserRouter>,
 )
