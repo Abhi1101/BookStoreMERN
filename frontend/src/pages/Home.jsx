@@ -4,13 +4,14 @@ import axios from "axios"
 import Spinner from '../components/Spinner'
 import { Link } from 'react-router'
 import BackButton from '../components/BackButton'
-
-
+import BooksCard from '../components/home/BooksCard'
+import BooksTable from '../components/home/BooksTable'
 
 function Home() {
 
     const [books, setbooks] = useState([]);
     const [loading, setloading] = useState(false)
+    const [showType , setShowType] = useState('table');
 
     useEffect(() => {
       setloading(true)
@@ -33,6 +34,21 @@ function Home() {
   return (
     <div className='p-4 border  border-gray-500 rounded-xl w-full '>
         {/* <BackButton/> */}
+        <div className='flex justify-center items-center gap-1'>
+            
+            <button 
+            className='bg-transparent border rounded p-2'
+            onClick={ ()=> setShowType('table')}
+            >Table
+            </button>
+            
+            <button 
+            className='bg-transparent border rounded p-2'
+            onClick={ ()=> setShowType('card')}
+            >Card
+            </button>
+
+        </div>
         <div className='flex items-center text-center w-full justify-around '>
             <h1 className='text-4xl m-8'>Books List</h1>
             
@@ -40,39 +56,8 @@ function Home() {
 
         </div >
         {
-            loading ? ( <Spinner/> ):(
-                <table className='w-full '>
-                    {/* <thead className='w-full'> */}
-                        <tr className='w-full border-b  border-gray-500  '>
-                            <th>No</th>
-                            <th>Title</th>
-                            <th>Auther</th>
-                            <th>Publish Year</th>
-                            <th>Options</th>   
-                        </tr>
-                    {/* </thead> */}
-                    <tbody className=''>
-                        {
-                            books.map( (book, index)=> (
-                                <tr key={book._id} className='' >
-                                    <td>{index+1}</td>
-                                    <td>{book.title}</td>
-                                    <td>{book.author}</td>
-                                    <td>{book.publishYear}</td>
-                                    <td>
-                                        <div className=' flex justify-center gap-2 p-2 '>
-                                            <Link to={`/books/details/${book._id}`} className='bg-blue-400 border p-2 rounded-xl ' >View Detail</Link>
-                                            <Link to={`/books/edit/${book._id}`} className='bg-green-400 border p-2 rounded-xl '>Edit</Link>
-                                            <Link to={`/books/delete/${book._id}`} className='bg-red-500 border p-2 rounded-xl '>Delete</Link>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))
-                            
-                        }
-                    </tbody>
-                </table>
-            ) 
+            loading ? ( <Spinner/> ): showType == 'table' ? <BooksTable books={books}/> :  <BooksCard books={books} /> 
+             
         } 
 
 

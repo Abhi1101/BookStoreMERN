@@ -21,7 +21,7 @@ function DeleteBook() {
         navigate('/')
       })
       .catch(err => {
-        setLoading(false);
+        // setLoading(false);
         alert("An error happened while deleting the book. Please Check Console");
         console.log(err);
       })
