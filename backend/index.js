@@ -1,9 +1,12 @@
+import './config/env.js'
 import express from "express";
-import { PORT, mongoDBURL } from "./config.js";
+// import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import { Book } from "./models/bookModel.js";
 import bookRoute from "./routes/booksRoute.js"
 import cors from "cors";
+
+
 
 const app = express();
 app.use(express.json());
@@ -24,14 +27,13 @@ app.get('/', (req, res) => {
 app.use("/books", bookRoute);
 
 
-
-
-mongoose
-    .connect(mongoDBURL)
+    mongoose.connect(`${process.env.mongoDBURL}`)
     .then(() => {
         console.log("app connected to database");
-        app.listen(PORT, () => {
-            console.log(`App is listening on port: http://localhost:${PORT}/`);
+        // app.listen(PORT, () => {
+        app.listen(process.env.PORT || 4000 , () => {
+            // console.log(`App is listening on port: http://localhost:${PORT}/`);
+            console.log(`App is listening on port: http://localhost:${process.env.PORT}/`);         //process.env
         })
 
     })
