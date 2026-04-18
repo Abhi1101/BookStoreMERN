@@ -16,7 +16,8 @@ function DeleteBook() {
 
   const handleDeleteBook = () => {
     setloader(true)
-    axios.delete(`http://localhost:5555/books/${id}`)
+    // axios.delete(`http://localhost:5555/books/${id}`)
+    axios.delete(`https://bookstoremern-asct.onrender.com/books/${id}`)
       .then((res) => {
         setloader(false);
         console.log(res);
