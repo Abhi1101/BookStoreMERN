@@ -11,7 +11,8 @@ function ShowBook() {
     const { id } = useParams();
 
     useEffect(()=>{
-            axios.get(`http://localhost:5555/books/${id}`)
+            // axios.get(`http://localhost:5555/books/${id}`)
+            axios.get(`https://bookstoremern-asct.onrender.com/books/${id}`)
             .then(response => {
                 console.log(response.data);
                 setbook(response.data);
