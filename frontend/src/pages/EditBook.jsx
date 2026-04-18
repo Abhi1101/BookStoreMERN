@@ -35,7 +35,8 @@ function EditBook() {
 
     setLoading(true);
 
-    axios.put(`http://localhost:5555/books/${id}`, data)
+    // axios.put(`http://localhost:5555/books/${id}`, data)
+    axios.put(`https://bookstoremern-asct.onrender.com/books/${id}`, data)
       .then((response) => {
         console.log(response);
         setLoading(false);
