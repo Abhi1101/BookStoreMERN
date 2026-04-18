@@ -20,7 +20,8 @@ function EditBook() {
   const {id} = useParams();
 
   useEffect(()=>{
-    axios.get(`http://localhost:5555/books/${id}`)
+    // axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`https://bookstoremern-asct.onrender.com/books/${id}`)
     .then((response)=> setPrevData(response.data))
     .catch(err => console.log(err))
   },[id])
